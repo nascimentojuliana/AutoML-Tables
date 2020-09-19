@@ -29,6 +29,10 @@ if __name__ == "__main__":
 
     client = automl.TablesClient(project=args.project_id, region=args.compute_region)
 
+    gcs_client = storage.Client(project=args.project_id)
+
+    bucket = gcs_client.get_bucket(args.bucket)
+
     # Lendo os dados de entrada e nomeando como df
     df = pd.read_csv(args.input)
 
@@ -39,7 +43,7 @@ if __name__ == "__main__":
     utils.gera_conjuntos(df)
 
     #exporta conjunto para storage
-    def export_gcs(export_object=df, output_path=args.output_path, bucket=args.bucket)
+    def export_gcs(export_object=df, output_path=args.output_path, bucket=bucket)
 
     # Cria dataset para modelo
     modelo = args.model
@@ -48,11 +52,11 @@ if __name__ == "__main__":
 
     # importa os dados no automl tables para dar inicio ao processo
     path = 'gs://{bucket}/{input}'.format(bucket=args.bucket, input=args.output_path)
-    utils.import_data(project_id, compute_region, dataset_display_name, path)
+    utils.import_data(args.project_id, args.compute_region, dataset_display_name, path)
 
     # Lista tabelas no dataset ids de tabela
     lista_tabela = utils.list_table_specs(
-        project_id, compute_region, dataset_display_name, filter_=None)
+        args.project_id, args.compute_region, dataset_display_name, filter_=None)
     dataset_id = lista_tabela[0].name.split("/")[-3]
     table_spec_id = lista_tabela[0].name.split("/")[-1]
 

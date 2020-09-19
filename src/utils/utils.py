@@ -62,7 +62,7 @@ def export_gcs(export_object, output_path, bucket):
     # TODO: criar condição que verifica o tamanho do arquivo e reduz o chunksize
     # apenas caso necessário.
     ## For slow upload speed
-    storage.blob._DEFAULT_CHUNKSIZE = 1024 * 1024 * 20# = 10 MB
+    #storage.blob._DEFAULT_CHUNKSIZE = 1024 * 1024 * 20# = 10 MB
     #storage.blob._MAX_MULTIPART_SIZE = 1024 * 1024 * 2
 
     blob.upload_from_file(f,  timeout=9999)
