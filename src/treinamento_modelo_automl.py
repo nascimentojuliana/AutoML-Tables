@@ -43,7 +43,7 @@ if __name__ == "__main__":
     utils.gera_conjuntos(df)
 
     #exporta conjunto para storage
-    def export_gcs(export_object=df, output_path=args.output_path, bucket=bucket)
+    utils.export_gcs(export_object=df, output_path=args.output_path, bucket=bucket)
 
     # Cria dataset para modelo
     modelo = args.model
